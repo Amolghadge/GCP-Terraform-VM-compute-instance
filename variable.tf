@@ -3,7 +3,6 @@
 variable "gcp_project_id" {
   type        = string
   description = "The GCP project ID to deploy resources into."
-  default = "regal-spark-464611-v3"
 }
 
 variable "gcp_region" {
