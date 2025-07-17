@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"db_server_vm","Source":"./modules/gcp-vm","Dir":"modules/gcp-vm"},{"Key":"web_server_vm","Source":"./modules/gcp-vm","Dir":"modules/gcp-vm"}]}
