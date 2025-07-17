@@ -16,3 +16,9 @@ variable "gcp_zone" {
   description = "The GCP zone for the VM instance."
   default     = "us-east1-b"
 }
+
+variable "gcp_new_key" {
+  description = "GCP credentials JSON"
+  type        = string
+  sensitive   = true
+}

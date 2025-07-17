@@ -2,10 +2,10 @@
 
 # Data source to get the latest boot image from a family.
 # This happens during the 'plan' stage.
-data "google_compute_image" "vm_image" {
-  family  = var.image_family
-  project = var.image_project
-}
+# data "google_compute_image" "vm_image" {
+#   family  = var.image_family
+#   project = var.image_project
+# }
 
 resource "google_compute_instance" "this" {
   name         = var.instance_name
@@ -15,7 +15,7 @@ resource "google_compute_instance" "this" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.vm_image.self_link
+      image = "debian-cloud/debian-11"
     }
   }
 
