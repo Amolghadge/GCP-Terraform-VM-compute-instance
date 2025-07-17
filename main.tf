@@ -12,7 +12,7 @@ terraform {
 provider "google" {
   project = var.gcp_project_id
   region  = var.gcp_region
-  credentials = var.gcp_new_key
+  #credentials = var.gcp_new_key
 }
 
 # Call the local module to create a web server VM
