@@ -7,7 +7,7 @@
 #   project = var.image_project
 # }
 
-resource "google_compute_instance" "this" {
+resource "google_compute_instance" "vm_instance" {
   name         = var.instance_name
   machine_type = var.machine_type
   zone         = var.zone
