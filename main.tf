@@ -21,14 +21,14 @@ module "web_server_vm" {
   source = "./modules/gcp-vm" // Path to the module
 
   # Pass values to the module's variables
-  instance_name = "web-server-from-module"
+  instance_name = "web-server-from-module1"
   machine_type  = "e2-small"
   zone          = var.gcp_zone
   tags          = ["web-server", "production"]
 }
 
 # You can reuse the module to create another VM easily!
-module "db_server_vm" {
+module "db_server_vm1" {
   source = "./modules/gcp-vm"
 
   instance_name = "db-server-from-module"
