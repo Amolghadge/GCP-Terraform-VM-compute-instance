@@ -17,8 +17,8 @@ variable "gcp_zone" {
   default     = "us-east1-b"
 }
 
-variable "GCP_CREDENTIALS" {
+/*variable "GCP_CREDENTIALS" {
   description = "GCP credentials JSON"
   type        = string
   sensitive   = true
-}
+}*/
