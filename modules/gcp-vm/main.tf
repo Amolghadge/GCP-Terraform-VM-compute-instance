@@ -36,6 +36,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 
+
 resource "google_storage_bucket" "terraform_state" {
   name                        = "my-terraform-state-bucket" # must be globally unique
   location                    = "us-central1"
