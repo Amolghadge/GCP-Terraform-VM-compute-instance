@@ -15,6 +15,7 @@ provider "google" {
   #credentials = var.GCP_CREDENTIALS
 }
 
+/*
 # Call the local module to create a web server VM
 module "web_server_vm" {
   source = "./modules/gcp-vm" // Path to the module
@@ -39,3 +40,4 @@ module "db_server_vm" {
   image_family  = "ubuntu-2204-lts" # <--- UPDATED VALUE
   image_project = "ubuntu-os-cloud"
 }
+*/
