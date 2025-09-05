@@ -28,3 +28,32 @@ resource "google_compute_instance" "vm_instance" {
     scopes = ["cloud-platform"]
   }
 }
+
+resource "google_storage_bucket" "terraform_state" {
+  name          = "${var.project_id}-tfstate"   # must be globally unique
+  location      = var.region
+  force_destroy = true
+
+  uniform_bucket_level_access = true
+
+  versioning {
+    enabled = true
+  }
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      age = 365
+    }
+  }
+}
+
+resource "google_storage_bucket_iam_member" "terraform_sa_admin" {
+  bucket = google_storage_bucket.terraform_state.name
+  role   = "roles/storage.admin"
+  member = "serviceAccount:gcpowner@regal-spark-464611-v3.iam.gserviceaccount.com"
+}
+
+
