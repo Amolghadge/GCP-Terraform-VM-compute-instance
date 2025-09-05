@@ -30,7 +30,7 @@ resource "google_compute_instance" "vm_instance" {
 }
 
 resource "google_storage_bucket" "terraform_state" {
-  name          = "${var.project_id}-tfstate"   # must be globally unique
+  name          = "my-terraform-state-bucket"   # must be globally unique
   location      = var.region
   force_destroy = true
 
