@@ -30,30 +30,26 @@ resource "google_compute_instance" "vm_instance" {
 }
 
 resource "google_storage_bucket" "terraform_state" {
-  name          = "my-terraform-state-bucket"   # must be globally unique
-  location      = var.region
-  force_destroy = true
-
+  name                        = "regal-spark-464611-v3-tfstate" # must be globally unique
+  location                    = "us-central1"
   uniform_bucket_level_access = true
-
   versioning {
     enabled = true
   }
-
-  lifecycle_rule {
-    action {
-      type = "Delete"
-    }
-    condition {
-      age = 365
-    }
-  }
 }
 
-resource "google_storage_bucket_iam_member" "terraform_sa_admin" {
+# IAM for Service Account
+resource "google_storage_bucket_iam_member" "tf_state_object_admin" {
   bucket = google_storage_bucket.terraform_state.name
-  role   = "roles/storage.admin"
+  role   = "roles/storage.objectAdmin"
   member = "serviceAccount:gcpowner@regal-spark-464611-v3.iam.gserviceaccount.com"
 }
+
+resource "google_storage_bucket_iam_member" "tf_state_bucket_reader" {
+  bucket = google_storage_bucket.terraform_state.name
+  role   = "roles/storage.legacyBucketReader"
+  member = "serviceAccount:gcpowner@regal-spark-464611-v3.iam.gserviceaccount.com"
+}
+
 
 
