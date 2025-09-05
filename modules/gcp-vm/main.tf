@@ -7,6 +7,13 @@
 #   project = var.image_project
 # }
 
+terraform {
+  backend "gcs" {
+    bucket = "my-terraform-state-bucket"
+    prefix = "terraform/state"
+  }
+}
+
 resource "google_compute_instance" "vm_instance" {
   name         = var.instance_name
   machine_type = var.machine_type
@@ -30,7 +37,7 @@ resource "google_compute_instance" "vm_instance" {
 }
 
 resource "google_storage_bucket" "terraform_state" {
-  name                        = "regal-spark-464611-v3-tfstate" # must be globally unique
+  name                        = "my-terraform-state-bucket" # must be globally unique
   location                    = "us-central1"
   uniform_bucket_level_access = true
   versioning {
