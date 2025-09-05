@@ -41,7 +41,7 @@ resource "google_storage_bucket" "terraform_state" {
 # IAM for Service Account
 resource "google_storage_bucket_iam_member" "tf_state_object_admin" {
   bucket = google_storage_bucket.terraform_state.name
-  role   = "roles/storage.objectAdmin"
+  role   = ["roles/storage.objectAdmin", "roles/storage.objects.list"]
   member = "serviceAccount:gcpowner@regal-spark-464611-v3.iam.gserviceaccount.com"
 }
 
