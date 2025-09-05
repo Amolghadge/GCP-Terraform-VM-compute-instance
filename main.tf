@@ -40,4 +40,5 @@ module "db_server_vm" {
   image_family  = "ubuntu-2204-lts" # <--- UPDATED VALUE
   image_project = "ubuntu-os-cloud"
 }
-*/
+*/ 
+
