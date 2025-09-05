@@ -15,10 +15,6 @@ provider "google" {
   #credentials = var.GCP_CREDENTIALS
 }
 
-variable "GCP_CREDENTIALS" {
-  type = string
-}
-
 # Call the local module to create a web server VM
 module "web_server_vm" {
   source = "./modules/gcp-vm" // Path to the module
