@@ -1,0 +1,39 @@
+name: Terraform Destroy GCP
+
+on:
+  workflow_dispatch:   # Manual trigger only
+    inputs:
+      auto_approve:
+        description: "Destroy without confirmation?"
+        required: true
+        default: "true"
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      # 3. Authenticate to GCP
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      # 4. Init Terraform
+      - name: Terraform Init
+        run: terraform init
+
+      # 5. Terraform Destroy
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
