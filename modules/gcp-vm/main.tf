@@ -7,12 +7,12 @@
 #   project = var.image_project
 # }
 
-terraform {
+/*terraform {
   backend "gcs" {
     bucket = "my-terraform-state-bucket"
     prefix = "terraform/state"
   }
-}
+}*/
 
 resource "google_compute_instance" "vm_instance" {
   name         = var.instance_name
@@ -36,7 +36,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 
-
+/*
 resource "google_storage_bucket" "terraform_state" {
   name                        = "my-terraform-state-bucket" # must be globally unique
   location                    = "us-central1"
@@ -58,6 +58,7 @@ resource "google_storage_bucket_iam_member" "tf_state_bucket_reader" {
   role   = "roles/storage.legacyBucketReader"
   member = "serviceAccount:gcpowner@regal-spark-464611-v3.iam.gserviceaccount.com"
 }
+*/
 
 
 
