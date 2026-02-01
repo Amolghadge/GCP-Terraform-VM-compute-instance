@@ -16,28 +16,28 @@ provider "google" {
 }
 
 
-# Call the local module to create a web server VM
-module "web_server_vm" {
-  source = "./modules/gcp-vm" // Path to the module
+# # Call the local module to create a web server VM
+# module "web_server_vm" {
+#   source = "./modules/gcp-vm" // Path to the module
 
-  # Pass values to the module's variables
-  instance_name = "web-server-from-module1"
-  machine_type  = "e2-small"
-  zone          = var.gcp_zone
-  tags          = ["web-server", "production"]
-}
+#   # Pass values to the module's variables
+#   instance_name = "web-server-from-module1"
+#   machine_type  = "e2-small"
+#   zone          = var.gcp_zone
+#   tags          = ["web-server", "production"]
+# }
 
-# You can reuse the module to create another VM easily!
-module "db_server_vm1" {
-  source = "./modules/gcp-vm"
+# # You can reuse the module to create another VM easily!
+# module "db_server_vm1" {
+#   source = "./modules/gcp-vm"
 
-  instance_name = "db-server-from-module1"
-  machine_type  = "e2-medium"
-  zone          = var.gcp_zone
-  tags          = ["database", "production"]
+#   instance_name = "db-server-from-module1"
+#   machine_type  = "e2-medium"
+#   zone          = var.gcp_zone
+#   tags          = ["database", "production"]
 
-  # Update this line to the newer LTS version
-  image_family  = "ubuntu-2204-lts" # <--- UPDATED VALUE
-  image_project = "ubuntu-os-cloud"
-}
+#   # Update this line to the newer LTS version
+#   image_family  = "ubuntu-2204-lts" # <--- UPDATED VALUE
+#   image_project = "ubuntu-os-cloud"
+# }
 
