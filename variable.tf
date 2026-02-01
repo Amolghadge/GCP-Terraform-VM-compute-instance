@@ -3,7 +3,7 @@
 variable "gcp_project_id" {
   type        = string
   description = "The GCP project ID to deploy resources into."
-  default = "ornate-producer-477604-s3"
+  default     = "ornate-producer-477604-s3"
 }
 
 variable "gcp_region" {

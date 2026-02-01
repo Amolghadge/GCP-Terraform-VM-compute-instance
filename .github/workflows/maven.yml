@@ -1,59 +1,59 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+# # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# # This workflow uses actions that are not certified by GitHub.
+# # They are provided by a third-party and are governed by
+# # separate terms of service, privacy policy, and support
+# # documentation.
 
-name: Terraform GCP Deployment
+# name: Terraform GCP Deployment
 
-on:
-  push:
-    branches:
-      - main   # Run only when pushing to main branch
-  pull_request:
-    branches:
-      - main   # Optional: run plan on PRs before merge
+# on:
+#   push:
+#     branches:
+#       - main   # Run only when pushing to main branch
+#   pull_request:
+#     branches:
+#       - main   # Optional: run plan on PRs before merge
 
-jobs:
-  terraform:
-    name: Terraform Plan & Apply
-    runs-on: ubuntu-latest
+# jobs:
+#   terraform:
+#     name: Terraform Plan & Apply
+#     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      id-token: write
+#     permissions:
+#       contents: read
+#       id-token: write
 
-    steps:
-      # 1. Checkout repo
-      - name: Checkout repository
-        uses: actions/checkout@v4
+#     steps:
+#       # 1. Checkout repo
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
 
-      # 2. Setup Terraform
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+#       # 2. Setup Terraform
+#       - name: Setup Terraform
+#         uses: hashicorp/setup-terraform@v3
 
-      # 3. Authenticate to GCP
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+#       # 3. Authenticate to GCP
+#       - name: Authenticate to Google Cloud
+#         uses: google-github-actions/auth@v2
+#         with:
+#           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      # 4. Set up gcloud CLI (optional, for debugging)
-      - name: Setup gcloud
-        uses: google-github-actions/setup-gcloud@v2
+#       # 4. Set up gcloud CLI (optional, for debugging)
+#       - name: Setup gcloud
+#         uses: google-github-actions/setup-gcloud@v2
 
-      # 5. Terraform Init
-      - name: Terraform Init
-        run: terraform init
+#       # 5. Terraform Init
+#       - name: Terraform Init
+#         run: terraform init
 
-      # 6. Terraform Plan
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
+#       # 6. Terraform Plan
+#       - name: Terraform Plan
+#         run: terraform plan -out=tfplan
 
-      # 7. Terraform Apply (only on push to main, not PRs)
-      - name: Terraform Apply
-        if: github.event_name == 'push'
-        run: terraform apply -auto-approve tfplan
+#       # 7. Terraform Apply (only on push to main, not PRs)
+#       - name: Terraform Apply
+#         if: github.event_name == 'push'
+#         run: terraform apply -auto-approve tfplan
 
